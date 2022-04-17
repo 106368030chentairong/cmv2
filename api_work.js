@@ -1,6 +1,34 @@
 
 $(function(){
 
+
+    if (!('Notification' in window)) {
+        console.log('This browser does not support notification');
+    }
+
+    if (Notification.permission === 'default' || Notification.permission === 'undefined') {
+        Notification.requestPermission(function(permission) {
+            // permission 可為「granted」（同意）、「denied」（拒絕）和「default」（未授權）
+            // 在這裡可針對使用者的授權做處理
+        });
+    }
+
+    function notification_msg(msg){
+        var notifyConfig = {
+            body: msg, // 設定內容
+            icon: './assets/img/icons/crux-logo-metamask.png', // 設定 icon
+          };
+          
+          if (Notification.permission === 'default' || Notification.permission === 'undefined') {
+            Notification.requestPermission(function(permission) {
+              if (permission === 'granted') {
+                // 使用者同意授權
+                var notification = new Notification('Hi there!', notifyConfig); // 建立通知
+              }
+            });
+          }
+    }
+
     function get_fleet_table(url, tabel_id, Stardust){
         var settings = {
             "url": url,
@@ -9,7 +37,7 @@ $(function(){
         };
     
         $.ajax(settings).done(function (response) {
-            console.log(response);
+            //console.log(response);
             $("#"+tabel_id).empty()
             response_tmp = '<tr>'
             $.each(response['data'], function( index, data ) {
@@ -31,9 +59,19 @@ $(function(){
                 response_tmp += '</tr>'
             })
             $("#"+tabel_id).append(response_tmp)
+
             inde_tmp = 0
             if (response["data"][0]["priceDM"] == 0){
                 inde_tmp +=1
+            }
+
+            if ((response["data"][inde_tmp]["priceDM"]/Stardust)<=0.09){
+                $("#"+tabel_id+"_price").addClass("text-danger");
+                $("#"+tabel_id+"_dif").addClass("text-danger");
+            }else{
+                //notification_msg((response["data"][inde_tmp]["priceDM"]/Stardust))
+                $("#"+tabel_id+"_price").removeClass("text-danger");
+                $("#"+tabel_id+"_dif").removeClass("text-danger");
             }
             $("#"+tabel_id+"_price").text(response["data"][inde_tmp]["priceDM"].toFixed(2)+" DM")
             $("#"+tabel_id+"_dif").text((response["data"][inde_tmp]["priceDM"]/Stardust).toFixed(4)+" ST/DM")
