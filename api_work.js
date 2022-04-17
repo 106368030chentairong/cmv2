@@ -23,7 +23,7 @@ $(function(){
             Notification.requestPermission(function(permission) {
               if (permission === 'granted') {
                 // 使用者同意授權
-                var notification = new Notification('Hi there!', notifyConfig); // 建立通知
+                var notification = new Notification('Price Notification', notifyConfig); // 建立通知
               }
             });
           }
