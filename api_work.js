@@ -14,19 +14,24 @@ $(function(){
     }
 
     function notification_msg(msg){
-        var notifyConfig = {
-            body: msg, // 設定內容
-            icon: '../assets/img/icons/crux-logo-metamask.png', // 設定 icon
-          };
-          
-          if (Notification.permission === 'default' || Notification.permission === 'undefined') {
-            Notification.requestPermission(function(permission) {
-              if (permission === 'granted') {
-                // 使用者同意授權
-                var notification = new Notification('Price Notification', notifyConfig); // 建立通知
-              }
-            });
-          }
+        if (!('Notification' in window)) {
+            console.log('This browser does not support notification');
+        }else{
+            var notifyConfig = {
+                body: msg, // 設定內容
+                icon: '../assets/img/icons/crux-logo-metamask.png', // 設定 icon
+                };
+                
+                if (Notification.permission === 'default' || Notification.permission === 'undefined') {
+                Notification.requestPermission(function(permission) {
+                    if (permission === 'granted') {
+                    // 使用者同意授權
+                    var notification = new Notification('Price Notification', notifyConfig); // 建立通知
+                    }
+                });
+                }
+        }
+
     }
 
     function get_fleet_table(url, tabel_id, Stardust){
