@@ -16,7 +16,7 @@ $(function(){
     function notification_msg(msg){
         var notifyConfig = {
             body: msg, // 設定內容
-            icon: './assets/img/icons/crux-logo-metamask.png', // 設定 icon
+            icon: '../assets/img/icons/crux-logo-metamask.png', // 設定 icon
           };
           
           if (Notification.permission === 'default' || Notification.permission === 'undefined') {
@@ -69,7 +69,7 @@ $(function(){
                 $("#"+tabel_id+"_price").addClass("text-danger");
                 $("#"+tabel_id+"_dif").addClass("text-danger");
             }else{
-                notification_msg((response["data"][inde_tmp]["priceDM"]/Stardust))
+                notification_msg((response["data"][inde_tmp]["priceDM"]/Stardust));
                 $("#"+tabel_id+"_price").removeClass("text-danger");
                 $("#"+tabel_id+"_dif").removeClass("text-danger");
             }
