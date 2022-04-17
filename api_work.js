@@ -69,7 +69,7 @@ $(function(){
                 $("#"+tabel_id+"_price").addClass("text-danger");
                 $("#"+tabel_id+"_dif").addClass("text-danger");
             }else{
-                //notification_msg((response["data"][inde_tmp]["priceDM"]/Stardust))
+                notification_msg((response["data"][inde_tmp]["priceDM"]/Stardust))
                 $("#"+tabel_id+"_price").removeClass("text-danger");
                 $("#"+tabel_id+"_dif").removeClass("text-danger");
             }
