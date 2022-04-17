@@ -1,4 +1,5 @@
-window.onload=function (){
+$(document).ready(function (){
+
   window.userWalletAddress = null
   const loginButton = document.getElementById('loginButton')
   const userWallet = document.getElementById('userWallet')
@@ -47,4 +48,4 @@ window.onload=function (){
     toggleButton()
   });
 
-};
+});
