@@ -35,6 +35,16 @@ $(function(){
             if (response["data"][0]["priceDM"] == 0){
                 inde_tmp +=1
             }
+
+            if ((response["data"][inde_tmp]["priceDM"]/Stardust)<=0.09){
+                //notification_msg((response["data"][inde_tmp]["priceDM"]/Stardust));
+                $("#"+tabel_id+"_price").addClass("text-danger");
+                $("#"+tabel_id+"_dif").addClass("text-danger");
+            }else{
+                $("#"+tabel_id+"_price").removeClass("text-danger");
+                $("#"+tabel_id+"_dif").removeClass("text-danger");
+            }
+
             $("#"+tabel_id+"_price").text(response["data"][inde_tmp]["priceDM"].toFixed(2)+" DM")
             $("#"+tabel_id+"_dif").text((response["data"][inde_tmp]["priceDM"]/Stardust).toFixed(4)+" ST/DM")
         });    
