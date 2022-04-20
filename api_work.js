@@ -1,36 +1,22 @@
 
 $(function(){
 
-
-    if (!('Notification' in window)) {
-        console.log('This browser does not support notification');
-    }
-
-    if (Notification.permission === 'default' || Notification.permission === 'undefined') {
-        Notification.requestPermission(function(permission) {
-            // permission 可為「granted」（同意）、「denied」（拒絕）和「default」（未授權）
-            // 在這裡可針對使用者的授權做處理
-        });
-    }
-
     function notification_msg(msg){
-        if (!('Notification' in window)) {
-            console.log('This browser does not support notification');
-        }else{
-            var notifyConfig = {
-                body: msg, // 設定內容
-                icon: '../assets/img/icons/crux-logo-metamask.png', // 設定 icon
-                };
-                
-                if (Notification.permission === 'default' || Notification.permission === 'undefined') {
-                Notification.requestPermission(function(permission) {
-                    if (permission === 'granted') {
-                    // 使用者同意授權
-                    var notification = new Notification('Price Notification', notifyConfig); // 建立通知
-                    }
-                });
+
+        var notifyConfig = {
+            body: msg, // 設定內容
+            icon: '../assets/img/icons/crux-logo-metamask.png', // 設定 icon
+            };
+            
+            if (Notification.permission === 'default' || Notification.permission === 'undefined') {
+            Notification.requestPermission(function(permission) {
+                if (permission === 'granted') {
+                // 使用者同意授權
+                var notification = new Notification('Price Notification', notifyConfig); // 建立通知
                 }
-        }
+            });
+            }
+        
 
     }
 
