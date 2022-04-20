@@ -57,7 +57,7 @@ $(function(){
             }
 
             if ((response["data"][inde_tmp]["priceDM"]/Stardust)<=0.09){
-                notification_msg((response["data"][inde_tmp]["priceDM"]/Stardust));
+                //notification_msg((response["data"][inde_tmp]["priceDM"]/Stardust));
                 $("#"+tabel_id+"_price").addClass("text-danger");
                 $("#"+tabel_id+"_dif").addClass("text-danger");
             }else{
