@@ -46,7 +46,7 @@ $(function(){
             }
 
             $("#"+tabel_id+"_price").text(response["data"][inde_tmp]["priceDM"].toFixed(2)+" DM")
-            $("#"+tabel_id+"_dif").text((response["data"][inde_tmp]["priceDM"]/Stardust).toFixed(4)+" ST/DM")
+            $("#"+tabel_id+"_dif").text((Stardust/response["data"][inde_tmp]["priceDM"]).toFixed(4)+" DM/ST")
         });    
     };
 
