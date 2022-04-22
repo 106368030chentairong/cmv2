@@ -38,7 +38,7 @@ $(function(){
                 inde_tmp +=1
             }
 
-            if ((response["data"][inde_tmp]["priceDM"]/Stardust)<=0.09){
+            if ((Stardust/response["data"][inde_tmp]["priceDM"])>=11){
                 //notification_msg((response["data"][inde_tmp]["priceDM"]/Stardust));
                 $("#"+tabel_id+"_price").addClass("text-danger");
                 $("#"+tabel_id+"_dif").addClass("text-danger");
