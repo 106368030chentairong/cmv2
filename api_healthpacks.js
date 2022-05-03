@@ -1,7 +1,8 @@
 
 $(function(){
 
-
+    var response_tmp = '<tr>'
+    var page_count = 0
     function get_fleet_table(url, tabel_id, Stardust){
         var settings = {
             "url": url,
@@ -11,14 +12,14 @@ $(function(){
     
         $.ajax(settings).done(function (response) {
             //console.log(response);
-            $("#"+tabel_id).empty()
-            response_tmp = '<tr>'
+            //$("#"+tabel_id).empty()
+            page_count = response['count'];
             $.each(response['data'], function( index, data ) {
                 response_tmp += '<td><i class="fab fa-angular fa-lg text-danger me-3"></i>'
                 response_tmp += data['sellerAddress']+'</td>'
         
                 response_tmp += '<td><i class="fab fa-angular fa-lg text-danger me-3"></i>'
-                response_tmp += data['nftId']+'</td>'
+                response_tmp += (data['nftData']['value']*1e-18).toFixed(2)+'</td>'
                 response_tmp += '<td><i class="fab fa-angular fa-lg text-danger me-3"></i>'
                 response_tmp += data['priceDM']+'</td>'
                 response_tmp += '<td><i class="fab fa-angular fa-lg text-danger me-3"></i>'
@@ -28,7 +29,7 @@ $(function(){
                     response_tmp += '<span class="badge bg-label-success me-1">On Sell</span> </td>'
                 }
                 response_tmp += '<td><i class="fab fa-angular fa-lg text-danger me-3"></i>'
-                response_tmp += (data['priceDM']/Stardust).toFixed(4)+'</td>'
+                response_tmp += ((data['nftData']['value']*1e-18).toFixed(2)/data['priceDM']).toFixed(2)+'</td>'
                 response_tmp += '</tr>'
             })
             $("#"+tabel_id).append(response_tmp)
@@ -52,24 +53,13 @@ $(function(){
     };
 
     var basic_url = "https://api-reborn.cryptomines.app/api/marketplace?"
-    var Worker_LV1_url = basic_url+"type=0&rank=1&level=1&page=1&limit=8&sort=priceDM&mpfrom=15&mpto=65"
-    var Worker_LV2_url = basic_url+"type=0&rank=2&level=1&page=1&limit=8&sort=priceDM&mpfrom=47&mpto=93"
-    var Worker_LV3_url = basic_url+"type=0&rank=3&level=1&page=1&limit=8&sort=priceDM&mpfrom=92&mpto=133"
-    var Worker_LV4_url = basic_url+"type=0&rank=4&level=1&page=1&limit=8&sort=priceDM&mpfrom=145&mpto=190"
-    var Worker_LV5_url = basic_url+"type=0&rank=5&level=1&page=1&limit=8&sort=priceDM&mpfrom=211&mpto=261"
-
-    get_fleet_table(Worker_LV1_url,"Worker_LV1", 340);
-    get_fleet_table(Worker_LV2_url,"Worker_LV2", 378.85);
-    get_fleet_table(Worker_LV3_url,"Worker_LV3", 451.02);
-    get_fleet_table(Worker_LV4_url,"Worker_LV4", 594.75);
-    get_fleet_table(Worker_LV5_url,"Worker_LV5", 1062.05);
-
-    setInterval(function() {
-        get_fleet_table(Worker_LV1_url,"Worker_LV1", 340);
-        get_fleet_table(Worker_LV2_url,"Worker_LV2", 378.85);
-        get_fleet_table(Worker_LV3_url,"Worker_LV3", 451.02);
-        get_fleet_table(Worker_LV4_url,"Worker_LV4", 594.75);
-        get_fleet_table(Worker_LV5_url,"Worker_LV5", 1062.05);
-
-    }, 500);
+    
+    $("#"+tabel_id).empty()
+    for (step = 1; step < 12; step++) {
+        var Worker_LV1_url = basic_url+"type=3&rank=1&level=1&page="+step.toString()+"&limit=500&sort=priceDM"
+        get_fleet_table(Worker_LV1_url,"Worker_LV1",1);
+    }
+    //setInterval(function() {
+    //    get_fleet_table(Worker_LV1_url,"Worker_LV1",1);
+    //}, 5000);
 });

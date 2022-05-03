@@ -57,18 +57,18 @@ $(function(){
     var Fleet_LV4_url = basic_url+"type=1&rank=4&level=1&page=1&limit=8&sort=priceDM&mpfrom=145&mpto=190"
     var Fleet_LV5_url = basic_url+"type=1&rank=5&level=1&page=1&limit=8&sort=priceDM&mpfrom=211&mpto=261"
 
-    get_fleet_table(Fleet_LV1_url,"Fleet_LV1", 400);
-    get_fleet_table(Fleet_LV2_url,"Fleet_LV2", 445);
-    get_fleet_table(Fleet_LV3_url,"Fleet_LV3", 530);
-    get_fleet_table(Fleet_LV4_url,"Fleet_LV4", 699);
-    get_fleet_table(Fleet_LV5_url,"Fleet_LV5", 1249);
+    get_fleet_table(Fleet_LV1_url,"Fleet_LV1", 340);
+    get_fleet_table(Fleet_LV2_url,"Fleet_LV2", 396.66);
+    get_fleet_table(Fleet_LV3_url,"Fleet_LV3", 472.22);
+    get_fleet_table(Fleet_LV4_url,"Fleet_LV4", 550.92);
+    get_fleet_table(Fleet_LV5_url,"Fleet_LV5", 1049.38);
 
     setInterval(function() {
-        get_fleet_table(Fleet_LV1_url,"Fleet_LV1", 400);
-        get_fleet_table(Fleet_LV2_url,"Fleet_LV2", 445);
-        get_fleet_table(Fleet_LV3_url,"Fleet_LV3", 530);
-        get_fleet_table(Fleet_LV4_url,"Fleet_LV4", 699);
-        get_fleet_table(Fleet_LV5_url,"Fleet_LV5", 1249);
+        get_fleet_table(Fleet_LV1_url,"Fleet_LV1", 340);
+        get_fleet_table(Fleet_LV2_url,"Fleet_LV2", 396.66);
+        get_fleet_table(Fleet_LV3_url,"Fleet_LV3", 472.22);
+        get_fleet_table(Fleet_LV4_url,"Fleet_LV4", 550.92);
+        get_fleet_table(Fleet_LV5_url,"Fleet_LV5", 1049.38);
 
     }, 500);
 });
